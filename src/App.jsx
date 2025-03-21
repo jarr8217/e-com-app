@@ -3,11 +3,10 @@ import './App.css'
 import BeatList from './BeatList.jsx'
 import Header from './Header.jsx'
 
-
-  function App() {
+function App() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredBeats, setFilteredBeats] = useState([]);
-      const beatList = [
+    const beatList = [
         {
             id: 1,
             title: 'Midnight Drive',
@@ -23,9 +22,7 @@ import Header from './Header.jsx'
             image: 'https://fakeimg.pl/200x200',
             tags: ['chill, lo-fi, hip hop'],
             description: 'A chill lo-fi hip hop beat to relax to.',
-  
-  
-        },
+          },
         {
             id: 2,
             title: 'Grime Time',
@@ -120,8 +117,8 @@ import Header from './Header.jsx'
             stock:
             */
             image: 'https://fakeimg.pl/200x200',
-            tags: ['future bass, high energy, party'],
-            description: 'A high energy future bass beat to get the party started.',
+            tags: ['dembow, high energy, party'],
+            description: 'A high energy dembow beat to get the party started.',
         },
         {
             id: 8,
@@ -151,6 +148,7 @@ import Header from './Header.jsx'
             key:
             stock:
             */
+            tags: ['salsa, latin, dance'],
             image: 'https://fakeimg.pl/200x200',
             description: 'Salsa beat that will make your soul dance.',
         },
@@ -172,9 +170,9 @@ import Header from './Header.jsx'
           },
           {
             id: 11,
-            title: 'reggaeton Rhythm',
+            title: 'Reggaeton Rhythm',
             artist: 'Sonido Tropical',
-            genre: "reggaeton",
+            genre: "Reggaeton",
             price: 10.00,
             /* audioPreview:
             audioFull::
@@ -198,62 +196,54 @@ import Header from './Header.jsx'
             key:
             stock:
             */
+           tags: ['merengue, latin, dance'],
             image: 'https://fakeimg.pl/200x200',
             description: 'A lively merengue beat to get you moving.',
         },
-        ];
-        // State to store the list of beats
-        const [beats, setBeats] = useState(beatList);
-  
-        // Handle search logic
-        const handleFiltered = (beats, searchTerm) => {
-            const lowerCaseTerm = searchTerm.toLowerCase();
+    ];
+    // State to store the list of beats
+    const [beats, setBeats] = useState(beatList);
 
-            const filtered = beats.filter((beat) => 
-                beat.genre.toLowerCase().includes(lowerCaseTerm) ||
-                beat.title.toLowerCase().includes(lowerCaseTerm) ||
-                beat.artist.toLowerCase().includes(lowerCaseTerm) ||
-                beat.id.toString().includes(lowerCaseTerm)
-            );
+    // Handle search logic
+    const handleFiltered = (beats, searchTerm) => {
+        const lowerCaseTerm = searchTerm.toLowerCase();
 
-            setFilteredBeats(filtered);
-            
-        };   
-        
-        // handles text input change
-        const handleFilter = (e) => {
-            const value = e.target.value;
-            setSearchTerm(value);
+        const filtered = beats.filter((beat) => 
+            beat.genre.toLowerCase().includes(lowerCaseTerm) ||
+            beat.title.toLowerCase().includes(lowerCaseTerm) ||
+            beat.artist.toLowerCase().includes(lowerCaseTerm) ||
+            beat.id.toString().includes(lowerCaseTerm) ||
+            beat.tags.join('').toLowerCase().includes(lowerCaseTerm)
+        );
 
-    };
+        setFilteredBeats(filtered);
+    };   
+    
+    // handles text input change
+    const handleFilter = (e) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+    }
 
-    //Triggers the search when the button is clicked
+    // Triggers the search when the button is clicked
     const handleSearch = () => {
         handleFiltered(beats, searchTerm);
     }
 
-    //Triggers search when the enter key is pressed
+    // Triggers search when the enter key is pressed
     const handleEnter = (e) => {
         if (e.key === 'Enter') {
-            handleFiltered();
+            handleSearch();
         }
-    };
+    }
 
+    return (
+        <div className="App">
+            <Header handleFilter={handleFilter} handleKeyPress={handleEnter} handleSearch={handleSearch} searchTerm={searchTerm} />
+            <BeatList beats={filteredBeats.length > 0 ? filteredBeats : beats} />
+        </div>
+    )
+};
 
+export default App;
 
-  
-      return (
-            <div className="App">
-                <Header handleFiltered={handleFiltered} />
-                <BeatList beats={beats} />
-            </div>
-      )
-    
-    };
-  
-  
-  
-  
-  
-  export default App;
-  

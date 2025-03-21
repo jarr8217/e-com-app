@@ -1,5 +1,5 @@
 .header {
-    display: flex;
+display: flex;
     justify-content: center; /* Center items horizontally */
     align-items: center;
     padding: 1rem 0;
@@ -14,7 +14,7 @@
     max-width: 1200px; /* Optional: limit the width of the nav */
 }
 
-.nav h1 {
+  .nav h1 {
     font-size: 2.5rem;
     margin: 0;
 }
