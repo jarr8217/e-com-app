@@ -6,9 +6,9 @@ function Header(props) {
     return (
         <header className={styles.header}>
             <nav className={styles.nav}>
-                <h1 className={styles.logo}>Beat Store</h1>
-                <input type="text" placeholder="Filter" onChange={props.handleFilter} />
-                <button className={styles.button}>Search</button>
+                <h1 className={styles.brand}>Beat Store</h1>
+                <input type="text" onChange={props.handleFilter} value={props.searchTerm} onKeyDown={props.handleKeyPress} placeholder="Search beat list" />
+                <button className={styles.button}>Search</button> 
             </nav>
         </header>
     );

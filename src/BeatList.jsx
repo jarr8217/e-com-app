@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './BeatList.module.css';
 
 // Beat list component
-const BeatList = ({ beats, onAddToCart }) => (
+const BeatList = ({ beats }) => (
     <div className={styles['beat-container']}>
         {beats.map((beat) => (
             <div key={beat.id} className={styles['beat-card']}>
@@ -13,7 +13,7 @@ const BeatList = ({ beats, onAddToCart }) => (
                     <p className={styles['beat-genre']}>{beat.genre}</p>
                     <p className={styles['beat-price']}>${beat.price}</p>
                     <p className={styles['beat-description']}>{beat.description}</p>
-                    <button onClick={() => onAddToCart(beat)}>Add to Cart</button> 
+                    <button className={styles['beat-button']}>Add to Cart</button>
                 </div>
             </div>
         ))}
